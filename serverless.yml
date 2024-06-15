@@ -1,0 +1,22 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: anish9320
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: practice
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: practice
+
+provider:
+  name: aws
+  runtime: python3.8
+  
+plugins:
+  - serverless-offline
+functions:
+  hello:
+    handler: handler.hello
+    timeout: 30
+    events:
+      - http:
+          path: send_email
+          method: post
+          cors: true
